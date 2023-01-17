@@ -1,0 +1,41 @@
+.filter
+  border-radius: 5px
+  border: 1px solid black
+  padding: 15px
+  width: 20%
+  gap: 15px
+  display: flex
+  flex-direction: column
+  &__reset-button
+    transition: background-color 500ms
+    border-radius: 5px
+    cursor: pointer
+    height: 40px
+    background-color: rgba(0, 0, 0, 0.71)
+    &:hover
+      background-color: rgba(0, 0, 0, 0.44)
+
+  &__genres
+    display: flex
+    gap: 10px
+    flex-direction: column
+    label
+      transition: color 500ms
+      &:hover
+        color: dodgerblue
+  &__sorting
+    display: flex
+    gap: 10px
+    flex-direction: column
+    select
+      border-radius: 5px
+      height: 30px
+  &__years
+    display: flex
+    gap: 10px
+    flex-direction: column
+    select
+      border-radius: 5px
+      height: 30px
+  &__genre-item
+    margin-right: 10px

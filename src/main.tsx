@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
-import App from './App';
+import './main.sass';
+import App from './components/app/App';
 
 const domNode: HTMLElement | null = document.getElementById('root');
 if (domNode) {
