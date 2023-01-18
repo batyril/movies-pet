@@ -7,9 +7,9 @@ import MoviesList from '../moviesList/MoviesList';
 function App() {
   return (
     <div className='movies'>
-      <Header />
-      <section className='movies__body container'>
-        <MoviesFilter />
+      <MoviesFilter />
+      <section className='movies__body'>
+        <Header />
         <MoviesList />
       </section>
     </div>

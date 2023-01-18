@@ -8,7 +8,7 @@ function Header() {
         <a href='#' className='movies__home'>
           Home
         </a>
-        <button className='movies_login button' type='button'>
+        <button className='movies__login button' type='button'>
           Login
         </button>
       </div>
