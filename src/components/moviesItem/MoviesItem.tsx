@@ -1,16 +1,27 @@
 import React from 'react';
-import poster from '../../image/poster.png';
 import bookmarks from '../../image/book.png';
 import favourite from '../../image/fav.png';
 
-function MoviesItem(props: { moviesData: { vote_average: number } }) {
+function MoviesItem(props: {
+  moviesData: {
+    vote_average: number;
+    poster_path: string;
+    backdrop_path: string;
+  };
+}) {
   const {
-    moviesData: { vote_average },
+    moviesData: { vote_average, poster_path, backdrop_path },
   } = props;
+
+  const imagePath = poster_path || backdrop_path;
+
   return (
     <div className='movies__list-item film'>
       <div className='film__image'>
-        <img src={poster} alt='film poster' />
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${imagePath}`}
+          alt='film poster'
+        />
       </div>
 
       <div className='film__main'>

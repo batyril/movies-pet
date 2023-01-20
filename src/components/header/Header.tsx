@@ -1,5 +1,6 @@
 import React from 'react';
 import './Header.sass';
+import Pagination from '../pagination/Pagination';
 
 function Header() {
   return (
@@ -8,6 +9,7 @@ function Header() {
         <a href='#' className='movies__home'>
           Home
         </a>
+        <Pagination />
         <button className='movies__login button' type='button'>
           Login
         </button>

@@ -1,9 +1,20 @@
-import React from 'react';
-import Pagination from '../pagination/Pagination';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './MoviesFilter.sass';
-import { genresList, yearsList } from '../../services/filters';
+import useMarvelService from '../../hooks/useMoviesServices';
+import { GenresConfig, GenresMap, StateConfig } from '../../interfaces';
 
 function MoviesFilter() {
+  const yearsList: number[] = useSelector((state: StateConfig) => state.years);
+  const genresList: GenresConfig[] = useSelector(
+    (state: StateConfig) => state.genres
+  );
+  const { getGenres, getYears } = useMarvelService();
+  useEffect(() => {
+    getYears();
+    getGenres();
+  }, []);
+
   return (
     <div className='filter'>
       <div className='movies__title'>GOOD MOVIES </div>
@@ -16,8 +27,9 @@ function MoviesFilter() {
         <div className='filter__sorting'>
           <label htmlFor='sorting'>Сортировать по:</label>
           <select id='sorting'>
-            <option>Сортировать по убыванию</option>
-            <option>Сортировать по возрастанию</option>
+            <option>Рейтинг по убыванию</option>
+            <option>Рейтинг по возрастанию</option>
+            <option>Рейтинг по возрастанию</option>
           </select>
         </div>
 
@@ -31,7 +43,7 @@ function MoviesFilter() {
         </div>
 
         <div className='filter__genres'>
-          {genresList.map(({ id, name }) => (
+          {genresList.map(({ id, name }: GenresMap) => (
             <label key={id}>
               <input
                 className='filter__genre-item'
@@ -42,8 +54,6 @@ function MoviesFilter() {
             </label>
           ))}
         </div>
-
-        <Pagination />
       </form>
     </div>
   );
