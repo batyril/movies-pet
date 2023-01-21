@@ -3,9 +3,11 @@ import { StateConfig } from '../interfaces';
 const initialState: StateConfig = {
   years: [],
   genres: [],
-  genresLoadingStatus: 'idle',
   movies: [],
-  page: 0,
+  sorting: [],
+  valueSorting: 'popular down',
+  valueYears: 2020,
+  selectedGenres: 0,
 };
 const reducer = (
   state: StateConfig = initialState,
@@ -16,31 +18,37 @@ const reducer = (
       return {
         ...state,
         genres: payload,
-        genresLoadingStatus: 'idle',
-      };
-    case 'FILTERS_FETCHING_ERROR':
-      return {
-        ...state,
-        genresLoadingStatus: 'error',
       };
 
     case 'YEARS_FETCHED':
       return {
         ...state,
         years: payload,
-        genresLoadingStatus: 'idle',
       };
     case 'MOVIES_FETCHED':
       return {
         ...state,
         movies: payload,
-        genresLoadingStatus: 'idle',
       };
-
-    case 'UPDATE_PAGE':
+    case 'SORTING_FETCHED':
       return {
         ...state,
-        page: payload,
+        sorting: payload,
+      };
+    case 'UPDATE_SORTING':
+      return {
+        ...state,
+        valueSorting: payload,
+      };
+    case 'UPDATE_YEARS':
+      return {
+        ...state,
+        valueYears: payload,
+      };
+    case 'UPDATE_SELECTED_GENRES':
+      return {
+        ...state,
+        selectedGenres: payload,
       };
     default:
       return state;

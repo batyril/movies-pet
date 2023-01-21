@@ -1,9 +1,23 @@
 export interface StateConfig {
-  years: number[] | [];
+  years: number[];
   genres: GenresConfig[];
   movies: Movie[];
-  genresLoadingStatus: string;
-  page: number;
+  sorting: SortingConfig[];
+  valueSorting: ValueSortingConfig;
+  valueYears: number;
+  selectedGenres: number;
+}
+
+export type ValueSortingConfig =
+  | 'rating down'
+  | 'rating up'
+  | 'popular down'
+  | 'popular up';
+
+export interface SortingConfig {
+  id: number;
+  name: string;
+  text: string;
 }
 
 export interface GenresConfig {
