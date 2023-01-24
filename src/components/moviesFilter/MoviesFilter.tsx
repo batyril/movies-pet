@@ -1,73 +1,42 @@
-import React, { FormEvent, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MoviesFilter.sass';
 import useMarvelService from '../../hooks/useMoviesServices';
-import {
-  GenresConfig,
-  GenresMap,
-  SortingConfig,
-  StateConfig,
-  ValueSortingConfig,
-} from '../../interfaces';
+import { StateConfig } from '../../const/interfaces';
 import {
   updateSelectGenres,
   updateValueSorting,
   updateValueYears,
 } from '../../redux/actions';
-import Pagination from '../pagination/Pagination';
+import { Pagination } from '../pagination/Pagination';
+import {
+  defaultValueGenres,
+  defaultValueSorting,
+  defaultValueYears,
+} from '../../const';
+import { FilterYearsItem } from '../filters/filter-years-item';
+import { FilterSortingItem } from '../filters/filter-sorting-item';
+import { FilterGenresItem } from '../filters/filter-genres-item';
+import { FilterCollectionsItem } from '../filters/filter-collections-item';
 
 function MoviesFilter() {
   const dispatch = useDispatch();
-  const yearsList: number[] = useSelector((state: StateConfig) => state.years);
-  const selectYears: number = useSelector(
-    (state: StateConfig) => state.valueYears
+  const authorization: boolean = useSelector(
+    (state: StateConfig) => state.authorization
   );
-  const genresList: GenresConfig[] = useSelector(
-    (state: StateConfig) => state.genres
-  );
-
-  const selectSorting: ValueSortingConfig = useSelector(
-    (state: StateConfig) => state.valueSorting
-  );
-
-  const sortingList: SortingConfig[] = useSelector(
-    (state: StateConfig) => state.sorting
-  );
-
-  const selectGenres: number = useSelector(
-    (state: StateConfig) => state.selectedGenres
-  );
-  const { getGenres, getYears, getSorting } = useMarvelService();
+  const { getGenres, getYears, getSorting, getCollections } =
+    useMarvelService();
   useEffect(() => {
     getYears();
     getGenres();
     getSorting();
+    getCollections();
   }, []);
 
   const resetFilter = () => {
-    const defaultValueSorting = 'popular down';
-    const defaultValueYears = 2020;
-    const defaultValueGenres = 0;
-
     dispatch(updateValueSorting(defaultValueSorting));
     dispatch(updateValueYears(defaultValueYears));
     dispatch(updateSelectGenres(defaultValueGenres));
-  };
-  const onChangeSorting = (event: FormEvent) => {
-    const element = event.target as HTMLInputElement;
-    const nameSorting = element.value;
-    dispatch(updateValueSorting(nameSorting));
-  };
-  const onChangeYears = (event: FormEvent) => {
-    const element = event.target as HTMLInputElement;
-    const numberYears = Number(element.value);
-    dispatch(updateValueYears(numberYears));
-  };
-
-  const onChangeGenres = (event: FormEvent) => {
-    const element = event.target as HTMLInputElement;
-    const nameGenres = Number(element.value);
-    dispatch(updateSelectGenres(nameGenres));
   };
 
   return (
@@ -83,42 +52,18 @@ function MoviesFilter() {
           Сбросить все фильтры
         </button>
 
-        <div className='filter__sorting'>
-          <label htmlFor='sorting'>Сортировать по</label>
-          <select onChange={onChangeSorting} value={selectSorting} id='sorting'>
-            {sortingList.map((item) => (
-              <option key={item.id} value={item.name}>
-                {item.text}
-              </option>
-            ))}
-          </select>
-        </div>
+        <FilterSortingItem />
 
-        <div className='filter__years'>
-          <label htmlFor='years'>Год релиза</label>
-          <select onChange={onChangeYears} value={selectYears} id='years'>
-            {yearsList.map((item: number) => (
-              <option value={item} key={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
+        <FilterYearsItem />
 
-        <div className='filter__genres'>
-          Жанр
-          <select onChange={onChangeGenres} value={selectGenres} id='genres'>
-            {genresList.map(({ id, name }: GenresMap) => (
-              <option value={id} key={id}>
-                {name}
-              </option>
-            ))}
-          </select>
-        </div>
+        <FilterGenresItem />
+
+        {authorization ? <FilterCollectionsItem /> : null}
+
         <Pagination />
       </form>
     </div>
   );
 }
 
-export default MoviesFilter;
+export { MoviesFilter };

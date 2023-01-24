@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.sass';
-import Header from '../header/Header';
-import MoviesFilter from '../moviesFilter/MoviesFilter';
-import MoviesList from '../moviesList/MoviesList';
+import { Header } from '../header/Header';
+import { MoviesFilter } from '../moviesFilter/MoviesFilter';
+import { MoviesList } from '../moviesList/MoviesList';
 
 function App() {
   return (
@@ -16,4 +16,4 @@ function App() {
   );
 }
 
-export default App;
+export { App };

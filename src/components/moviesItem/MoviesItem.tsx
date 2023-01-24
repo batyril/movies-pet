@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import bookmarks from '../../image/book.png';
-import favourite from '../../image/fav.png';
-import { GenresConfig, StateConfig } from '../../interfaces';
+import { createPortal } from 'react-dom';
+import bookmarks from '../../image/bookmarks.png';
+import favourite from '../../image/favourite.png';
+import { GenresConfig, Movie, StateConfig } from '../../const/interfaces';
+import { ModalContent } from '../modal/modal';
+import {
+  nameLocalStorage,
+  updateLocalStorage,
+} from '../../utilities/localStorage';
 
-function MoviesItem(props: {
-  moviesData: {
-    vote_average: number;
-    poster_path: string;
-    backdrop_path: string;
-    genre_ids: number[];
-  };
-}) {
+function MoviesItem(props: { moviesData: Movie }) {
   const {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     moviesData: { vote_average, poster_path, backdrop_path, genre_ids },
   } = props;
+  const { moviesData } = props;
+  const [showModal, setShowModal] = useState(false);
   const genresList: GenresConfig[] = useSelector(
     (state: StateConfig) => state.genres
+  );
+
+  const authorization: boolean = useSelector(
+    (state: StateConfig) => state.authorization
   );
 
   const getGenreById = (id: number, genres: GenresConfig[]) =>
@@ -52,16 +58,37 @@ function MoviesItem(props: {
           <button className='button  film__detailed' type='button'>
             Подробнее
           </button>
-          <button className='button  film__bookmarks' type='button'>
-            <img src={bookmarks} alt='bookmarks button' />
-          </button>
-          <button className='button  film__favourites' type='button'>
+          <button
+            onClick={() =>
+              authorization
+                ? updateLocalStorage(nameLocalStorage.favorites, moviesData)
+                : setShowModal(true)
+            }
+            className='button  film__favourites'
+            type='button'
+          >
             <img src={favourite} alt='favourite button' />
+          </button>
+          <button
+            onClick={() =>
+              authorization
+                ? updateLocalStorage(nameLocalStorage.seeLater, moviesData)
+                : setShowModal(true)
+            }
+            className='button  film__bookmarks'
+            type='button'
+          >
+            <img src={bookmarks} alt='bookmarks button' />
           </button>
         </div>
       </div>
+      {showModal &&
+        createPortal(
+          <ModalContent onClose={() => setShowModal(false)} />,
+          document.body
+        )}
     </div>
   );
 }
 
-export default MoviesItem;
+export { MoviesItem };

@@ -3,9 +3,16 @@ export interface StateConfig {
   genres: GenresConfig[];
   movies: Movie[];
   sorting: SortingConfig[];
-  valueSorting: ValueSortingConfig;
-  valueYears: number;
+  selectedSorting: ValueSortingConfig;
+  selectedYears: number;
   selectedGenres: number;
+  authorization: boolean;
+  collections: CollectionsConfig[];
+  selectedCollections: string;
+}
+
+export interface ModalContentConfig {
+  onClose: () => void;
 }
 
 export type ValueSortingConfig =
@@ -15,6 +22,12 @@ export type ValueSortingConfig =
   | 'popular up';
 
 export interface SortingConfig {
+  id: number;
+  name: string;
+  text: string;
+}
+
+export interface CollectionsConfig {
   id: number;
   name: string;
   text: string;

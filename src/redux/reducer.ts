@@ -1,58 +1,85 @@
-import { StateConfig } from '../interfaces';
+import { AnyAction } from 'redux';
+import { StateConfig } from '../const/interfaces';
+import {
+  ACTIONS_TYPE,
+  defaultValueCollections,
+  defaultValueGenres,
+  defaultValueSorting,
+  defaultValueYears,
+} from '../const';
 
 const initialState: StateConfig = {
   years: [],
   genres: [],
   movies: [],
   sorting: [],
-  valueSorting: 'popular down',
-  valueYears: 2020,
-  selectedGenres: 0,
+  selectedSorting: defaultValueSorting,
+  selectedCollections: defaultValueCollections,
+  selectedYears: defaultValueYears,
+  selectedGenres: defaultValueGenres,
+  authorization: false,
+  collections: [],
 };
+
 const reducer = (
   state: StateConfig = initialState,
-  { type, payload }: { type: string; payload: object | number }
-) => {
+  { type, payload }: AnyAction = { type: {} }
+): StateConfig => {
   switch (type) {
-    case 'FILTERS_FETCHED':
+    case ACTIONS_TYPE.FILTERS_FETCHED:
       return {
         ...state,
         genres: payload,
       };
 
-    case 'YEARS_FETCHED':
+    case ACTIONS_TYPE.YEARS_FETCHED:
       return {
         ...state,
         years: payload,
       };
-    case 'MOVIES_FETCHED':
+    case ACTIONS_TYPE.COLLECTIONS_FETCHED:
+      return {
+        ...state,
+        collections: payload,
+      };
+    case ACTIONS_TYPE.MOVIES_FETCHED:
       return {
         ...state,
         movies: payload,
       };
-    case 'SORTING_FETCHED':
+    case ACTIONS_TYPE.SORTING_FETCHED:
       return {
         ...state,
         sorting: payload,
       };
-    case 'UPDATE_SORTING':
+    case ACTIONS_TYPE.UPDATE_SORTING:
       return {
         ...state,
-        valueSorting: payload,
+        selectedSorting: payload,
       };
-    case 'UPDATE_YEARS':
+    case ACTIONS_TYPE.UPDATE_YEARS:
       return {
         ...state,
-        valueYears: payload,
+        selectedYears: payload,
       };
-    case 'UPDATE_SELECTED_GENRES':
+    case ACTIONS_TYPE.UPDATE_SELECTED_GENRES:
       return {
         ...state,
         selectedGenres: payload,
+      };
+    case ACTIONS_TYPE.UPDATE_SELECTED_COLLECTIONS:
+      return {
+        ...state,
+        selectedCollections: payload,
+      };
+    case ACTIONS_TYPE.UPDATE_AUTHORIZATION:
+      return {
+        ...state,
+        authorization: payload,
       };
     default:
       return state;
   }
 };
 
-export default reducer;
+export { reducer };

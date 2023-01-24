@@ -1,35 +1,50 @@
-import { ValueSortingConfig } from '../interfaces';
+import { ACTIONS_TYPE } from '../const';
 
 export const filtersFetched = (filters: object) => ({
-  type: 'FILTERS_FETCHED',
+  type: ACTIONS_TYPE.FILTERS_FETCHED,
+  payload: filters,
+});
+
+export const collectionsFetched = (filters: object) => ({
+  type: ACTIONS_TYPE.COLLECTIONS_FETCHED,
   payload: filters,
 });
 
 export const yearsFetched = (years: object) => ({
-  type: 'YEARS_FETCHED',
+  type: ACTIONS_TYPE.YEARS_FETCHED,
   payload: years,
 });
 
 export const sortingFetched = (years: object) => ({
-  type: 'SORTING_FETCHED',
+  type: ACTIONS_TYPE.SORTING_FETCHED,
   payload: years,
 });
 
 export const moviesFetched = (movies: object) => ({
-  type: 'MOVIES_FETCHED',
+  type: ACTIONS_TYPE.MOVIES_FETCHED,
   payload: movies,
 });
 export const updateValueSorting = (sorting: string) => ({
-  type: 'UPDATE_SORTING',
+  type: ACTIONS_TYPE.UPDATE_SORTING,
   payload: sorting,
 });
 
 export const updateValueYears = (years: number) => ({
-  type: 'UPDATE_YEARS',
+  type: ACTIONS_TYPE.UPDATE_YEARS,
   payload: years,
 });
 
 export const updateSelectGenres = (genres: number) => ({
-  type: 'UPDATE_SELECTED_GENRES',
+  type: ACTIONS_TYPE.UPDATE_SELECTED_GENRES,
   payload: genres,
+});
+
+export const updateSelectCollections = (collections: string) => ({
+  type: ACTIONS_TYPE.UPDATE_SELECTED_COLLECTIONS,
+  payload: collections,
+});
+
+export const updateAuthorization = (value: boolean) => ({
+  type: ACTIONS_TYPE.UPDATE_AUTHORIZATION,
+  payload: value,
 });

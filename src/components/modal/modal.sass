@@ -1,0 +1,54 @@
+
+.modal
+  position: absolute
+  z-index: 4
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 99vw
+  height: 100vh
+  top: 0
+  background-color: rgba(0, 0, 0, 0.44)
+  &__content
+    position: relative
+    background-color: #2B2C3A
+    width: 500px
+    height: 300px
+    box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px
+    border-radius: 12px
+  &__form
+    color: white
+    gap: 20px
+    height: 100%
+    justify-content: center
+    align-items: center
+    display: flex
+    flex-direction: column
+    input
+      border-radius: 5px
+      height: 30px
+      width: 250px
+    label
+      display: flex
+      justify-content: space-between
+      flex-direction: column
+  &__button
+    color: white
+    cursor: pointer
+    font-size: 15px
+    height: 40px
+    width: 130px
+    background-color: #519b51
+  &__close
+    width: 14px
+    height: 15px
+    background-color: inherit
+    position: absolute
+    top: 5px
+    right: 5px
+    &:hover
+      background-color: inherit
+    img
+      width: 100%
+      height: 100%
+

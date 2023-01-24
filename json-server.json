@@ -1,4 +1,35 @@
 {
+  "sorting": [
+    { "id": 1,
+      "name": "rating down",
+      "text":"Рейтинг по убыванию"
+    },
+    { "id": 2,
+      "name": "rating up",
+      "text":"Рейтинг по возрастанию"
+    },
+    { "id": 3,
+      "name": "popular down",
+      "text":"Популярные по убыванию"
+    }, { "id": 4,
+      "name": "popular up",
+      "text":"Популярные по возрастанию"
+    }
+  ],
+  "collections": [
+    { "id": 1,
+      "name": "default collections",
+      "text":"Выбрать коллекцию"
+    },
+    { "id": 2,
+      "name": "Watch later",
+      "text":"Смотреть позже"
+    },
+    { "id": 3,
+      "name": "favorites",
+      "text":"Избранные"
+    }
+  ],
   "genres":[
   {
     "id": 0,
@@ -4883,24 +4914,6 @@
       "video": false,
       "vote_average": 6.1,
       "vote_count": 885
-    }
-  ]
-,
-  "sorting": [
-    { "id": 1,
-      "name": "rating down",
-      "text":"Рейтинг по убыванию"
-    },
-    { "id": 2,
-      "name": "rating up",
-      "text":"Рейтинг по возрастанию"
-    },
-    { "id": 3,
-      "name": "popular down",
-      "text":"Популярные по убыванию"
-    }, { "id": 4,
-      "name": "popular up",
-      "text":"Популярные по возрастанию"
     }
   ]
 }
