@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
+import { Link } from 'react-router-dom';
 import bookmarks from '../../image/bookmarks.png';
 import favourite from '../../image/favourite.png';
 import { GenresConfig, Movie, StateConfig } from '../../const/interfaces';
@@ -13,7 +14,7 @@ import {
 function MoviesItem(props: { moviesData: Movie }) {
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    moviesData: { vote_average, poster_path, backdrop_path, genre_ids },
+    moviesData: { vote_average, poster_path, backdrop_path, genre_ids, id },
   } = props;
   const { moviesData } = props;
   const [showModal, setShowModal] = useState(false);
@@ -56,7 +57,7 @@ function MoviesItem(props: { moviesData: Movie }) {
         </div>
         <div className='film__buttons'>
           <button className='button  film__detailed' type='button'>
-            Подробнее
+            <Link to={`/${id}`}>Подробнее</Link>
           </button>
           <button
             onClick={() =>

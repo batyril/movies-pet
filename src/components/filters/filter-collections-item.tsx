@@ -1,10 +1,7 @@
 import React, { FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CollectionsConfig, StateConfig } from '../../const/interfaces';
-import {
-  updateSelectCollections,
-  updateSelectGenres,
-} from '../../redux/actions';
+import { updateSelectCollections } from '../../redux/actions';
 
 function FilterCollectionsItem() {
   const dispatch = useDispatch();

@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.sass';
-import { Header } from '../header/Header';
-import { MoviesFilter } from '../moviesFilter/MoviesFilter';
-import { MoviesList } from '../moviesList/MoviesList';
+import { Page404 } from '../../pages/page-404';
+import { SingleMoviePage } from '../../pages/single-movie-page';
+import useMarvelService from '../../hooks/useMoviesServices';
+import { Layout } from '../../pages/layout';
+import { HomePage } from '../../pages/home-page';
 
 function App() {
+  const { getMovies } = useMarvelService();
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
   return (
-    <div className='movies'>
-      <MoviesFilter />
-      <section className='movies__body'>
-        <Header />
-        <MoviesList />
-      </section>
-    </div>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path='/:movieId' element={<SingleMoviePage />} />
+        <Route path='*' element={<Page404 />} />
+      </Route>
+    </Routes>
   );
 }
 

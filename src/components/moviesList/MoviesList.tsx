@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { MoviesItem } from '../moviesItem/MoviesItem';
 import './MoviesList.sass';
-import useMarvelService from '../../hooks/useMoviesServices';
 import { Movie, StateConfig } from '../../const/interfaces';
 import {
   filterYearsGenresCollections,
@@ -13,7 +12,6 @@ import {
 } from '../../utilities/filters';
 
 function MoviesList() {
-  const { getMovies } = useMarvelService();
   const moviesList = useSelector((state: StateConfig) => state.movies);
   const selectedSorting = useSelector(
     (state: StateConfig) => state.selectedSorting
@@ -64,10 +62,6 @@ function MoviesList() {
     selectedGenres,
     selectedCollections
   );
-
-  useEffect(() => {
-    getMovies();
-  }, []);
 
   return (
     <div className='movies__list'>
