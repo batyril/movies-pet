@@ -56,4 +56,4 @@ const useMarvelService = () => {
   };
 };
 
-export default useMarvelService;
+export { useMarvelService };

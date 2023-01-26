@@ -1,8 +1,11 @@
-export const defaultValueSorting = 'popular down';
-export const defaultValueYears = 2020;
-export const defaultValueGenres = 0;
-
-export const defaultValueCollections = 'default collections';
+export const DEFAULT_VALUE = {
+  COLLECTIONS: 'default collections',
+  GENRES: 0,
+  YEARS: 2020,
+  SORTING: 'popular down',
+  SELECTED_PAGE: 1,
+  COUNT_MOVIES_PAGE: 8,
+};
 
 export const ACTIONS_TYPE = {
   FILTERS_FETCHED: 'FILTERS_FETCHED',
@@ -15,4 +18,6 @@ export const ACTIONS_TYPE = {
   UPDATE_SELECTED_GENRES: 'UPDATE_SELECTED_GENRES',
   UPDATE_SELECTED_COLLECTIONS: 'UPDATE_SELECTED_COLLECTIONS',
   UPDATE_AUTHORIZATION: 'UPDATE_AUTHORIZATION',
+  UPDATE_SELECTED_PAGE: 'UPDATE_SELECTED_PAGE',
+  RESET_SELECTED_PAGE: 'RESET_SELECTED_PAGE',
 };

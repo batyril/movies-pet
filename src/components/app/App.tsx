@@ -3,13 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import './App.sass';
 import { Page404 } from '../../pages/page-404';
 import { SingleMoviePage } from '../../pages/single-movie-page';
-import useMarvelService from '../../hooks/useMoviesServices';
+import { useMarvelService } from '../../hooks/useMoviesServices';
 import { Layout } from '../../pages/layout';
 import { HomePage } from '../../pages/home-page';
 
 function App() {
   const { getMovies } = useMarvelService();
-
   useEffect(() => {
     getMovies();
   }, []);

@@ -48,3 +48,12 @@ export const updateAuthorization = (value: boolean) => ({
   type: ACTIONS_TYPE.UPDATE_AUTHORIZATION,
   payload: value,
 });
+
+export const updateSelectedPage = (value: boolean) => ({
+  type: ACTIONS_TYPE.UPDATE_SELECTED_PAGE,
+  payload: value,
+});
+
+export const resetSelectedPage = () => ({
+  type: ACTIONS_TYPE.RESET_SELECTED_PAGE,
+});

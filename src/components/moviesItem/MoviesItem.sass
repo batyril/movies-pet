@@ -1,0 +1,70 @@
+.film
+  transition: transform 500ms
+  border-radius: 7px
+  height: 450px
+  display: flex
+  justify-content: flex-start
+  width: 250px
+  flex-direction: column
+  background-color: rgba(151, 151, 151, 0.08)
+  box-shadow: 5px 5px 36px -38px rgba(0, 0, 0, 0.16)
+  &:hover
+    transform: scale(1.01)
+  &__image
+    width: 100%
+    height: 80%
+    img
+      width: 100%
+      object-fit: cover
+      height: 100%
+      border-radius: 5px 5px 0 0
+  &__main
+    padding: 10px 15px 15px 15px
+    color: white
+    display: flex
+    flex-direction: column
+    gap: 10px
+  &__texts
+    display: flex
+    justify-content: space-between
+    align-items: center
+  &__rating
+    font-size: 14px
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 30px
+    width: 30px
+    background-color: rgba(151, 151, 151, 0.37)
+    border-radius: 50%
+  &__buttons
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    gap: 10px
+  &__detailed
+    width: 100px
+    height: 30px
+    a
+      color: white
+      text-decoration: none
+  &__favourites
+    margin-left: 50px
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 30px
+    width: 30px
+    border-radius: 50%
+    img
+      width: 55%
+  &__bookmarks
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 30px
+    width: 30px
+    border-radius: 50%
+    img
+      width: 40%
+

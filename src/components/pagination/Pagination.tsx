@@ -1,35 +1,34 @@
 import React from 'react';
 import './Pagination.sass';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { StateConfig } from '../../const/interfaces';
+import { updateSelectedPage } from '../../redux/actions';
 
 function Pagination() {
   const dispatch = useDispatch();
-  /*
+  const selectedPage = useSelector((state: StateConfig) => state.selectedPage);
+
   const nextPage = () => {
-    dispatch(updatePage(page + 8));
+    dispatch(updateSelectedPage(true));
   };
 
   const prevPage = () => {
-    if (page <= 0) {
-      return;
-    }
-    dispatch(updatePage(page - 8));
+    dispatch(updateSelectedPage(false));
   };
-*/
 
   return (
     <div className='pagination'>
       <div className='pagination__buttons'>
         <button
-          /*          disabled={page <= 0}
-          onClick={prevPage} */
+          disabled={selectedPage <= 1}
+          onClick={prevPage}
           className='pagination__button button'
           type='button'
         >
           Назад
         </button>
         <button
-          /* onClick={nextPage} */
+          onClick={nextPage}
           className='pagination__button button'
           type='button'
         >

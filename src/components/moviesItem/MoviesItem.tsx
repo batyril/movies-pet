@@ -10,6 +10,7 @@ import {
   nameLocalStorage,
   updateLocalStorage,
 } from '../../utilities/localStorage';
+import './MoviesItem.sass';
 
 function MoviesItem(props: { moviesData: Movie }) {
   const {
@@ -26,8 +27,8 @@ function MoviesItem(props: { moviesData: Movie }) {
     (state: StateConfig) => state.authorization
   );
 
-  const getGenreById = (id: number, genres: GenresConfig[]) =>
-    genres.find((item) => item.id === id);
+  const getGenreById = (idGenre: number, genres: GenresConfig[]) =>
+    genres.find((item) => item.id === idGenre);
 
   const genresFilmList = genre_ids.map((item: number) => {
     const genresFilm = getGenreById(item, genresList);

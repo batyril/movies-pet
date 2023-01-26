@@ -25,6 +25,10 @@ function MoviesList() {
   const selectedCollections: string = useSelector(
     (state: StateConfig) => state.selectedCollections
   );
+  const selectedPage = useSelector((state: StateConfig) => state.selectedPage);
+  const countMoviesPage = useSelector(
+    (state: StateConfig) => state.countMoviesPage
+  );
 
   const getFilterMovies = (
     movies: Movie[],
@@ -62,12 +66,14 @@ function MoviesList() {
     selectedGenres,
     selectedCollections
   );
+  const lastMovieIndex = selectedPage * countMoviesPage;
+  const firstMoviesIndex = lastMovieIndex - countMoviesPage;
 
   return (
     <div className='movies__list'>
-      {filterMoviesList.map((item) => (
-        <MoviesItem key={item.id} moviesData={item} />
-      ))}
+      {filterMoviesList
+        .map((item) => <MoviesItem key={item.id} moviesData={item} />)
+        .slice(firstMoviesIndex, lastMovieIndex)}
     </div>
   );
 }

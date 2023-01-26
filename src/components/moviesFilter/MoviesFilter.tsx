@@ -1,19 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MoviesFilter.sass';
-import useMarvelService from '../../hooks/useMoviesServices';
+import { useMarvelService } from '../../hooks/useMoviesServices';
 import { StateConfig } from '../../const/interfaces';
 import {
+  resetSelectedPage,
   updateSelectGenres,
   updateValueSorting,
   updateValueYears,
 } from '../../redux/actions';
 import { Pagination } from '../pagination/Pagination';
-import {
-  defaultValueGenres,
-  defaultValueSorting,
-  defaultValueYears,
-} from '../../const';
+import { DEFAULT_VALUE } from '../../const';
 import { FilterYearsItem } from '../filters/filter-years-item';
 import { FilterSortingItem } from '../filters/filter-sorting-item';
 import { FilterGenresItem } from '../filters/filter-genres-item';
@@ -34,9 +31,10 @@ function MoviesFilter() {
   }, []);
 
   const resetFilter = () => {
-    dispatch(updateValueSorting(defaultValueSorting));
-    dispatch(updateValueYears(defaultValueYears));
-    dispatch(updateSelectGenres(defaultValueGenres));
+    dispatch(updateValueSorting(DEFAULT_VALUE.SORTING));
+    dispatch(updateValueYears(DEFAULT_VALUE.YEARS));
+    dispatch(updateSelectGenres(DEFAULT_VALUE.GENRES));
+    dispatch(resetSelectedPage());
   };
 
   return (

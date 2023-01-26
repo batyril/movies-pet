@@ -1,15 +1,11 @@
 import React, { FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateValueSorting } from '../../redux/actions';
-import {
-  SortingConfig,
-  StateConfig,
-  ValueSortingConfig,
-} from '../../const/interfaces';
+import { SortingConfig, StateConfig } from '../../const/interfaces';
 
 function FilterSortingItem() {
   const dispatch = useDispatch();
-  const selectedSorting: ValueSortingConfig = useSelector(
+  const selectedSorting: string = useSelector(
     (state: StateConfig) => state.selectedSorting
   );
 

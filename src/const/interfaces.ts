@@ -3,12 +3,14 @@ export interface StateConfig {
   genres: GenresConfig[];
   movies: Movie[];
   sorting: SortingConfig[];
-  selectedSorting: ValueSortingConfig;
+  selectedSorting: string;
   selectedYears: number;
   selectedGenres: number;
   authorization: boolean;
   collections: CollectionsConfig[];
   selectedCollections: string;
+  selectedPage: number;
+  countMoviesPage: number;
 }
 
 export interface ModalContentConfig {
