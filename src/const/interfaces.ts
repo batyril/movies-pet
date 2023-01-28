@@ -1,16 +1,29 @@
 export interface StateConfig {
-  years: number[];
-  genres: GenresConfig[];
-  movies: Movie[];
-  sorting: SortingConfig[];
+  selectedPopularity: string;
+  selectedRating: string;
+  filters: FiltersConfig;
   selectedSorting: string;
   selectedYears: number;
   selectedGenres: number;
   authorization: boolean;
-  collections: CollectionsConfig[];
+  movies: Movie[];
   selectedCollections: string;
   selectedPage: number;
   countMoviesPage: number;
+  favoriteMovies: Movie[];
+  watchLater: Movie[];
+}
+
+export interface FiltersConfig {
+  sorting: SortingConfig[];
+  collections: CollectionsConfig[];
+  genres: GenresConfig[];
+  years: number[];
+}
+
+export interface ButtonsConfig {
+  moviesData: Movie;
+  setShowModal: (value: boolean) => void;
 }
 
 export interface ModalContentConfig {
@@ -61,8 +74,4 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
-}
-
-export interface MoviesConfig {
-  movies: Movie[];
 }

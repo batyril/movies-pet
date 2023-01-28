@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Header.sass';
+import './header.sass';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -19,6 +19,11 @@ function Header() {
         <Link to='/' className='movies__home'>
           Home
         </Link>
+        <button type='button' className='movies__search-button button'>
+          <Link to='/search' className='movies__search'>
+            Выбрать фильм
+          </Link>
+        </button>
 
         {authorization ? (
           <button

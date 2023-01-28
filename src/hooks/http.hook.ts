@@ -8,7 +8,7 @@ const useHttp = () => {
     async (
       url: string,
       method = 'GET',
-      body = null,
+      body: string | null = null,
       headers = { 'Content-Type': 'application/json' }
     ) => {
       setLoading(true);

@@ -1,25 +1,19 @@
 import { ACTIONS_TYPE } from '../const';
+import { Movie } from '../const/interfaces';
 
 export const filtersFetched = (filters: object) => ({
   type: ACTIONS_TYPE.FILTERS_FETCHED,
   payload: filters,
 });
 
-export const collectionsFetched = (filters: object) => ({
-  type: ACTIONS_TYPE.COLLECTIONS_FETCHED,
-  payload: filters,
+export const watchLaterFetched = (movie: Movie[]) => ({
+  type: ACTIONS_TYPE.WATCH_LATER_FETCHED,
+  payload: movie,
 });
-
-export const yearsFetched = (years: object) => ({
-  type: ACTIONS_TYPE.YEARS_FETCHED,
-  payload: years,
+export const favoriteMoviesFetched = (movie: Movie[]) => ({
+  type: ACTIONS_TYPE.FAVORITE_MOVIES_FETCHED,
+  payload: movie,
 });
-
-export const sortingFetched = (years: object) => ({
-  type: ACTIONS_TYPE.SORTING_FETCHED,
-  payload: years,
-});
-
 export const moviesFetched = (movies: object) => ({
   type: ACTIONS_TYPE.MOVIES_FETCHED,
   payload: movies,
@@ -32,6 +26,15 @@ export const updateValueSorting = (sorting: string) => ({
 export const updateValueYears = (years: number) => ({
   type: ACTIONS_TYPE.UPDATE_YEARS,
   payload: years,
+});
+
+export const updateUpdateRating = (rating: string) => ({
+  type: ACTIONS_TYPE.UPDATE_RATING,
+  payload: rating,
+});
+export const updatePopularity = (popularity: string) => ({
+  type: ACTIONS_TYPE.UPDATE_POPULARITY,
+  payload: popularity,
 });
 
 export const updateSelectGenres = (genres: number) => ({

@@ -6,7 +6,7 @@ import { updateSelectGenres } from '../../redux/actions';
 function FilterGenresItem() {
   const dispatch = useDispatch();
   const genresList: GenresConfig[] = useSelector(
-    (state: StateConfig) => state.genres
+    (state: StateConfig) => state.filters.genres
   );
 
   const onChangeGenres = (event: FormEvent) => {
@@ -19,7 +19,7 @@ function FilterGenresItem() {
     (state: StateConfig) => state.selectedGenres
   );
   return (
-    <div className='filter__genres'>
+    <div className='filter__genres filter-select'>
       Жанр
       <select onChange={onChangeGenres} value={selectedGenres} id='genres'>
         {genresList.map(({ id, name }: GenresMap) => (

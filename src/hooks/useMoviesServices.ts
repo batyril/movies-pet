@@ -1,59 +1,63 @@
 import { useDispatch } from 'react-redux';
 import useHttp from './http.hook';
 import {
-  collectionsFetched,
+  favoriteMoviesFetched,
   filtersFetched,
   moviesFetched,
-  sortingFetched,
-  yearsFetched,
+  watchLaterFetched,
 } from '../redux/actions';
-import {
-  CollectionsConfig,
-  GenresConfig,
-  MoviesConfig,
-  YearsConfig,
-} from '../const/interfaces';
+import { Movie } from '../const/interfaces';
 
-const useMarvelService = () => {
+const useMoviesServices = () => {
   const { loading, request, error, clearError } = useHttp();
   const dispatch = useDispatch();
   const API = 'http://localhost:3000';
 
   const getMovies = async () => {
-    const res: MoviesConfig = await request(`${API}/movies?`);
+    const res: Movie[] = await request(`${API}/movies?`);
     dispatch(moviesFetched(res));
   };
 
-  const getSorting = async () => {
-    const res: GenresConfig[] = await request(`${API}/sorting`);
-    dispatch(sortingFetched(res));
-  };
-
-  const getGenres = async () => {
-    const res: GenresConfig[] = await request(`${API}/genres`);
+  const getAllFilters = async () => {
+    const res = await request(`${API}/filters`);
     dispatch(filtersFetched(res));
   };
-
-  const getCollections = async () => {
-    const res: CollectionsConfig[] = await request(`${API}/collections`);
-    dispatch(collectionsFetched(res));
+  const getFavoriteMovies = async () => {
+    const res: Movie[] = await request(`${API}/favoriteMovies`);
+    dispatch(favoriteMoviesFetched(res));
+  };
+  const postFavoriteMovies = async (movie: Movie) => {
+    const res: Movie[] = await request(
+      `${API}/favoriteMovies`,
+      'POST',
+      JSON.stringify(movie)
+    );
   };
 
-  const getYears = async () => {
-    const res: YearsConfig = await request(`${API}/years`);
-    dispatch(yearsFetched(res));
+  const postWatchLater = async (movie: Movie) => {
+    const res: Movie[] = await request(
+      `${API}/watchLater`,
+      'POST',
+      JSON.stringify(movie)
+    );
+  };
+
+  const getWatchLater = async () => {
+    const res: Movie[] = await request(`${API}/watchLater`);
+    dispatch(watchLaterFetched(res));
   };
 
   return {
+    getAllFilters,
     getMovies,
-    getGenres,
-    getSorting,
-    getYears,
     loading,
     error,
     clearError,
-    getCollections,
+    getFavoriteMovies,
+    postFavoriteMovies,
+    getWatchLater,
+    postWatchLater,
   };
 };
 
-export { useMarvelService };
+export { useMoviesServices };

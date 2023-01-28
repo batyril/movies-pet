@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { MoviesItem } from '../moviesItem/MoviesItem';
-import './MoviesList.sass';
+import { MoviesItem } from '../moviesItem/movies-item';
+import './movies-list.sass';
 import { Movie, StateConfig } from '../../const/interfaces';
 import {
   filterYearsGenresCollections,
@@ -30,6 +30,11 @@ function MoviesList() {
     (state: StateConfig) => state.countMoviesPage
   );
 
+  const watchLater = useSelector((state: StateConfig) => state.watchLater);
+  const favoriteMovies = useSelector(
+    (state: StateConfig) => state.favoriteMovies
+  );
+
   const getFilterMovies = (
     movies: Movie[],
     sorting: string,
@@ -40,19 +45,47 @@ function MoviesList() {
     switch (sorting) {
       case 'popular down':
         return filterPopularityDown(
-          filterYearsGenresCollections(years, genres, collections, movies)
+          filterYearsGenresCollections(
+            years,
+            genres,
+            collections,
+            movies,
+            watchLater,
+            favoriteMovies
+          )
         );
       case 'popular up':
         return filterPopularityUp(
-          filterYearsGenresCollections(years, genres, collections, movies)
+          filterYearsGenresCollections(
+            years,
+            genres,
+            collections,
+            movies,
+            watchLater,
+            favoriteMovies
+          )
         );
       case 'rating up':
         return filterRatingUp(
-          filterYearsGenresCollections(years, genres, collections, movies)
+          filterYearsGenresCollections(
+            years,
+            genres,
+            collections,
+            movies,
+            watchLater,
+            favoriteMovies
+          )
         );
       case 'rating down':
         return filterRatingDown(
-          filterYearsGenresCollections(years, genres, collections, movies)
+          filterYearsGenresCollections(
+            years,
+            genres,
+            collections,
+            movies,
+            watchLater,
+            favoriteMovies
+          )
         );
       default:
         return movies;

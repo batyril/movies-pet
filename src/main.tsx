@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './main.sass';
 import { Provider } from 'react-redux';
-import { App } from './components/app/App';
+import { App } from './components/app/app';
 import { store } from './redux/store';
 
 const domNode: HTMLElement | null = document.getElementById('root');

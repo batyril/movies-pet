@@ -7,7 +7,9 @@ function FilterYearsItem() {
   const selectedYears: number = useSelector(
     (state: StateConfig) => state.selectedYears
   );
-  const yearsList: number[] = useSelector((state: StateConfig) => state.years);
+  const yearsList: number[] = useSelector(
+    (state: StateConfig) => state.filters.years
+  );
   const dispatch = useDispatch();
   const onChangeYears = (event: FormEvent) => {
     const element = event.target as HTMLInputElement;
@@ -16,7 +18,7 @@ function FilterYearsItem() {
   };
 
   return (
-    <div className='filter__years'>
+    <div className='filter__years filter-select'>
       <label htmlFor='years'>Год релиза</label>
       <select onChange={onChangeYears} value={selectedYears} id='years'>
         {yearsList.map((item: number) => (

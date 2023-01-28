@@ -3,16 +3,17 @@ import { StateConfig } from '../const/interfaces';
 import { ACTIONS_TYPE, DEFAULT_VALUE } from '../const';
 
 const initialState: StateConfig = {
-  years: [],
-  genres: [],
+  filters: { sorting: [], years: [], collections: [], genres: [] },
   movies: [],
-  sorting: [],
+  favoriteMovies: [],
+  watchLater: [],
+  selectedPopularity: DEFAULT_VALUE.POPULARITY,
+  selectedRating: DEFAULT_VALUE.RATING,
   selectedSorting: DEFAULT_VALUE.SORTING,
   selectedCollections: DEFAULT_VALUE.COLLECTIONS,
   selectedYears: DEFAULT_VALUE.YEARS,
   selectedGenres: DEFAULT_VALUE.GENRES,
   authorization: false,
-  collections: [],
   selectedPage: DEFAULT_VALUE.SELECTED_PAGE,
   countMoviesPage: DEFAULT_VALUE.COUNT_MOVIES_PAGE,
 };
@@ -25,29 +26,35 @@ const reducer = (
     case ACTIONS_TYPE.FILTERS_FETCHED:
       return {
         ...state,
-        genres: payload,
+        filters: payload,
       };
-
-    case ACTIONS_TYPE.YEARS_FETCHED:
+    case ACTIONS_TYPE.FAVORITE_MOVIES_FETCHED:
       return {
         ...state,
-        years: payload,
+        favoriteMovies: payload,
       };
-    case ACTIONS_TYPE.COLLECTIONS_FETCHED:
+    case ACTIONS_TYPE.WATCH_LATER_FETCHED:
       return {
         ...state,
-        collections: payload,
+        watchLater: payload,
       };
     case ACTIONS_TYPE.MOVIES_FETCHED:
       return {
         ...state,
         movies: payload,
       };
-    case ACTIONS_TYPE.SORTING_FETCHED:
+    case ACTIONS_TYPE.UPDATE_RATING:
       return {
         ...state,
-        sorting: payload,
+        selectedRating: payload,
       };
+
+    case ACTIONS_TYPE.UPDATE_POPULARITY:
+      return {
+        ...state,
+        selectedPopularity: payload,
+      };
+
     case ACTIONS_TYPE.UPDATE_SORTING:
       return {
         ...state,

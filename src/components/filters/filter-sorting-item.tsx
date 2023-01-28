@@ -10,7 +10,7 @@ function FilterSortingItem() {
   );
 
   const sortingList: SortingConfig[] = useSelector(
-    (state: StateConfig) => state.sorting
+    (state: StateConfig) => state.filters.sorting
   );
 
   const onChangeSorting = (event: FormEvent) => {
@@ -20,7 +20,7 @@ function FilterSortingItem() {
   };
 
   return (
-    <div className='filter__sorting'>
+    <div className='filter__sorting filter-select'>
       <label htmlFor='sorting'>Сортировать по</label>
       <select onChange={onChangeSorting} value={selectedSorting} id='sorting'>
         {sortingList.map((item) => (

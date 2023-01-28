@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import bookmarks from '../../image/bookmarks.png';
-import favourite from '../../image/favourite.png';
 import { GenresConfig, Movie, StateConfig } from '../../const/interfaces';
 import { ModalContent } from '../modal/modal';
-import {
-  nameLocalStorage,
-  updateLocalStorage,
-} from '../../utilities/localStorage';
-import './MoviesItem.sass';
+import './movies-item.sass';
+import { ButtonFavourite } from '../buttons/button-favourite';
+import { ButtonWatchLater } from '../buttons/button-watch-later';
 
 function MoviesItem(props: { moviesData: Movie }) {
   const {
@@ -20,11 +16,7 @@ function MoviesItem(props: { moviesData: Movie }) {
   const { moviesData } = props;
   const [showModal, setShowModal] = useState(false);
   const genresList: GenresConfig[] = useSelector(
-    (state: StateConfig) => state.genres
-  );
-
-  const authorization: boolean = useSelector(
-    (state: StateConfig) => state.authorization
+    (state: StateConfig) => state.filters.genres
   );
 
   const getGenreById = (idGenre: number, genres: GenresConfig[]) =>
@@ -60,28 +52,14 @@ function MoviesItem(props: { moviesData: Movie }) {
           <button className='button  film__detailed' type='button'>
             <Link to={`/${id}`}>Подробнее</Link>
           </button>
-          <button
-            onClick={() =>
-              authorization
-                ? updateLocalStorage(nameLocalStorage.favorites, moviesData)
-                : setShowModal(true)
-            }
-            className='button  film__favourites'
-            type='button'
-          >
-            <img src={favourite} alt='favourite button' />
-          </button>
-          <button
-            onClick={() =>
-              authorization
-                ? updateLocalStorage(nameLocalStorage.seeLater, moviesData)
-                : setShowModal(true)
-            }
-            className='button  film__bookmarks'
-            type='button'
-          >
-            <img src={bookmarks} alt='bookmarks button' />
-          </button>
+          <ButtonFavourite
+            moviesData={moviesData}
+            setShowModal={(value: boolean) => setShowModal(value)}
+          />
+          <ButtonWatchLater
+            moviesData={moviesData}
+            setShowModal={(value: boolean) => setShowModal(value)}
+          />
         </div>
       </div>
       {showModal &&

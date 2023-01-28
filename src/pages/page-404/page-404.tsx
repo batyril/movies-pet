@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import cat404 from '../image/sad-cat.png';
+import cat404 from '../../image/sad-cat.png';
+import './page-404.sass';
 
 function Page404() {
   return (

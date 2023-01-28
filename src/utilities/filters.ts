@@ -1,15 +1,15 @@
 import { Movie } from '../const/interfaces';
-import { getLocalStorage, nameLocalStorage } from './localStorage';
 
 export function filterYearsGenresCollections(
   years: number,
   genres: number,
   collections: string,
-  movies: Movie[]
+  movies: Movie[],
+  moviesWatchLater: Movie[],
+  moviesFavorites: Movie[]
 ) {
   if (collections === 'Watch later') {
-    const moviesWatchLater = getLocalStorage(nameLocalStorage.seeLater);
-    if (moviesWatchLater !== null) {
+    if (moviesWatchLater) {
       return moviesWatchLater
         .filter((item: Movie) => item.release_date.includes(String(years)))
         .filter((item: Movie) =>
@@ -17,9 +17,8 @@ export function filterYearsGenresCollections(
         );
     }
   } else if (collections === 'favorites') {
-    const moviesWatchLater = getLocalStorage(nameLocalStorage.favorites);
-    if (moviesWatchLater !== null) {
-      return moviesWatchLater
+    if (moviesFavorites) {
+      return moviesFavorites
         .filter((item: Movie) => item.release_date.includes(String(years)))
         .filter((item: Movie) =>
           genres === 0 ? true : item.genre_ids.includes(genres)
@@ -29,6 +28,32 @@ export function filterYearsGenresCollections(
   return movies
     .filter((item) => item.release_date.includes(String(years)))
     .filter((item) => (genres === 0 ? true : item.genre_ids.includes(genres)));
+}
+
+function randomIntFromInterval(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+export function filteredPopularityRatingGenres(
+  popularity: string,
+  rating: string,
+  genres: number,
+  movies: Movie[]
+) {
+  const filteredMovies = movies
+    .filter((item: Movie) =>
+      genres === 0 ? true : item.genre_ids.includes(genres)
+    )
+    .filter((item: Movie) =>
+      rating === 'high rating' ? item.vote_average > 5 : item.vote_average < 5
+    )
+    .filter((item: Movie) =>
+      popularity === 'high popularity'
+        ? item.popularity > 100
+        : item.popularity < 100
+    );
+  console.log(filteredMovies.length, filteredMovies);
+  return filteredMovies[randomIntFromInterval(0, filteredMovies.length - 1)];
 }
 
 export function filterPopularityDown(movies: Movie[]) {

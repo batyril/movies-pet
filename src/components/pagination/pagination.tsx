@@ -1,5 +1,5 @@
 import React from 'react';
-import './Pagination.sass';
+import './pagination.sass';
 import { useDispatch, useSelector } from 'react-redux';
 import { StateConfig } from '../../const/interfaces';
 import { updateSelectedPage } from '../../redux/actions';

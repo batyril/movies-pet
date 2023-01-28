@@ -1,6 +1,6 @@
 import React from 'react';
-import { MoviesFilter } from '../components/moviesFilter/MoviesFilter';
-import { MoviesList } from '../components/moviesList/MoviesList';
+import { MoviesFilter } from '../../components/moviesFilter/movies-filter';
+import { MoviesList } from '../../components/moviesList/movies-list';
 
 function HomePage() {
   return (

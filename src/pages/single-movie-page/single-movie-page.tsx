@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { StateConfig } from '../const/interfaces';
+import { StateConfig } from '../../const/interfaces';
 import './single-movie-page.sass';
 
 function SingleMoviePage() {
@@ -9,7 +9,6 @@ function SingleMoviePage() {
   const moviesList = useSelector((state: StateConfig) =>
     state.movies.find((movies) => movies.id === Number(movieId))
   );
-  console.log(moviesList);
   return (
     <div
       className='single-movie'

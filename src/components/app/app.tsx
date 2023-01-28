@@ -1,22 +1,27 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './App.sass';
-import { Page404 } from '../../pages/page-404';
-import { SingleMoviePage } from '../../pages/single-movie-page';
-import { useMarvelService } from '../../hooks/useMoviesServices';
-import { Layout } from '../../pages/layout';
-import { HomePage } from '../../pages/home-page';
+import './app.sass';
+import { useMoviesServices } from '../../hooks/useMoviesServices';
+import {
+  HomePage,
+  Page404,
+  SingleMoviePage,
+  Layout,
+  MovieSearchPage,
+} from '../../pages';
 
 function App() {
-  const { getMovies } = useMarvelService();
+  const { getMovies, getAllFilters } = useMoviesServices();
   useEffect(() => {
     getMovies();
+    getAllFilters();
   }, []);
 
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<HomePage />} />
+        <Route path='/search' element={<MovieSearchPage />} />
         <Route path='/:movieId' element={<SingleMoviePage />} />
         <Route path='*' element={<Page404 />} />
       </Route>
