@@ -1,13 +1,17 @@
 import React, { FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { createSelector } from 'reselect';
 import { GenresConfig, GenresMap, StateConfig } from '../../const/interfaces';
 import { updateSelectGenres } from '../../redux/actions';
 
 function FilterGenresItem() {
   const dispatch = useDispatch();
-  const genresList: GenresConfig[] = useSelector(
-    (state: StateConfig) => state.filters.genres
+  const genresListSelector = createSelector(
+    (state: StateConfig) => state.filters.genres,
+    (genres) => genres
   );
+
+  const genresList: GenresConfig[] = useSelector(genresListSelector);
 
   const onChangeGenres = (event: FormEvent) => {
     const element = event.target as HTMLInputElement;

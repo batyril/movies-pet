@@ -139,6 +139,24 @@
       "video": false,
       "vote_average": 6.1,
       "vote_count": 885
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/meIF4dCPCh80gsBY5cM4E3jSKRd.jpg",
+      "genre_ids": [
+        27
+      ],
+      "id": 708336,
+      "original_language": "en",
+      "original_title": "Return of the Tooth Fairy",
+      "overview": "Через 15 лет после трагических событий, которые перевернули его жизнь, Кори, уже взрослый, но ещё не оправившийся от детской травмы юноша, едет на встречу выпускников. Однако, его планам хорошо провести время с друзьями и сблизиться с симпатичной бывшей однокурсницей снова мешает Зубная фея.",
+      "popularity": 24.96,
+      "poster_path": "/n8XFS2FVStaBPS2vLqUuH2bAjVf.jpg",
+      "release_date": "2020-06-15",
+      "title": "Зубная фея 2",
+      "video": false,
+      "vote_average": 6.5,
+      "vote_count": 742
     }
   ],
   "filters": {

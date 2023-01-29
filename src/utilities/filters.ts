@@ -74,3 +74,62 @@ export function filterRatingDown(movies: Movie[]) {
     .sort((prev, next) => prev.vote_average - next.vote_average)
     .reverse();
 }
+
+export const getFilterMovies = (
+  movies: Movie[],
+  sorting: string,
+  years: number,
+  genres: number,
+  collections: string,
+  watchLater: Movie[],
+  favoriteMovies: Movie[]
+) => {
+  switch (sorting) {
+    case 'popular down':
+      return filterPopularityDown(
+        filterYearsGenresCollections(
+          years,
+          genres,
+          collections,
+          movies,
+          watchLater,
+          favoriteMovies
+        )
+      );
+    case 'popular up':
+      return filterPopularityUp(
+        filterYearsGenresCollections(
+          years,
+          genres,
+          collections,
+          movies,
+          watchLater,
+          favoriteMovies
+        )
+      );
+    case 'rating up':
+      return filterRatingUp(
+        filterYearsGenresCollections(
+          years,
+          genres,
+          collections,
+          movies,
+          watchLater,
+          favoriteMovies
+        )
+      );
+    case 'rating down':
+      return filterRatingDown(
+        filterYearsGenresCollections(
+          years,
+          genres,
+          collections,
+          movies,
+          watchLater,
+          favoriteMovies
+        )
+      );
+    default:
+      return movies;
+  }
+};
