@@ -8,10 +8,10 @@ function FilterCollectionsItem() {
   const { fetchWatchLater, fetchFavoriteMovies } = useMoviesServices();
   const dispatch = useAppDispatch();
   const collectionsList: CollectionsConfig[] = useAppSelector(
-    (state: StateConfig) => state.filters.filters.collections
+    (state: StateConfig) => state.filters.data.collections
   );
   const selectedCollections = useAppSelector(
-    (state: StateConfig) => state.filters.selectedCollections
+    (state: StateConfig) => state.filters.selected.collections
   );
 
   useEffect(() => {

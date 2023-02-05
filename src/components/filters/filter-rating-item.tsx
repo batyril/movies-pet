@@ -7,7 +7,7 @@ function FilterRatingItem() {
   const dispatch = useAppDispatch();
 
   const selectedRating: string = useAppSelector(
-    (state: StateConfig) => state.filters.selectedRating
+    (state: StateConfig) => state.filters.selected.rating
   );
   const onChangeRating = (event: FormEvent) => {
     const element = event.target as HTMLInputElement;

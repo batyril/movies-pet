@@ -52,7 +52,6 @@ export function filteredPopularityRatingGenres(
         ? item.popularity > 100
         : item.popularity < 100
     );
-  console.log(filteredMovies.length, filteredMovies);
   return filteredMovies[randomIntFromInterval(0, filteredMovies.length - 1)];
 }
 

@@ -16,7 +16,7 @@ function MoviesItem(props: { moviesData: Movie }) {
   const { moviesData } = props;
   const [showModal, setShowModal] = useState(false);
   const genresList: GenresConfig[] = useAppSelector(
-    (state: StateConfig) => state.filters.filters.genres
+    (state: StateConfig) => state.filters.data.genres
   );
 
   const getGenreById = (idGenre: number, genres: GenresConfig[]) =>

@@ -6,10 +6,10 @@ import { updateSelectedYears } from '../moviesFilter/filters-slice';
 function FilterYearsItem() {
   const dispatch = useAppDispatch();
   const selectedYears: number = useAppSelector(
-    (state: StateConfig) => state.filters.selectedYears
+    (state: StateConfig) => state.filters.selected.years
   );
   const yearsList: number[] = useAppSelector(
-    (state: StateConfig) => state.filters.filters.years
+    (state: StateConfig) => state.filters.data.years
   );
 
   const onChangeYears = (event: FormEvent) => {

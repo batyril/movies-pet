@@ -7,7 +7,7 @@ function FilterPopularityItem() {
   const dispatch = useAppDispatch();
 
   const selectedPopularity: string = useAppSelector(
-    (state: StateConfig) => state.filters.selectedPopularity
+    (state: StateConfig) => state.filters.selected.popularity
   );
   const onChangePopularity = (event: FormEvent) => {
     const element = event.target as HTMLInputElement;

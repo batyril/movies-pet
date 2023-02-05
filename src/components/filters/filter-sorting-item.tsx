@@ -6,11 +6,11 @@ import { SortingConfig, StateConfig } from '../../const/interfaces';
 function FilterSortingItem() {
   const dispatch = useAppDispatch();
   const selectedSorting: string = useAppSelector(
-    (state: StateConfig) => state.filters.selectedSorting
+    (state: StateConfig) => state.filters.selected.sorting
   );
 
   const sortingList: SortingConfig[] = useAppSelector(
-    (state: StateConfig) => state.filters.filters.sorting
+    (state: StateConfig) => state.filters.data.sorting
   );
 
   const onChangeSorting = (event: FormEvent) => {

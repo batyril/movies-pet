@@ -15,17 +15,15 @@ function MovieSearchPage() {
   const [moviesSelected, setMoviesSelected] =
     useState<MoviesSelectedType>(null);
   const selectedPopularity: string = useAppSelector(
-    (state: StateConfig) => state.filters.selectedPopularity
+    (state: StateConfig) => state.filters.selected.popularity
   );
   const selectedRating: string = useAppSelector(
-    (state: StateConfig) => state.filters.selectedRating
+    (state: StateConfig) => state.filters.selected.rating
   );
   const selectedGenres: number = useAppSelector(
-    (state: StateConfig) => state.filters.selectedGenres
+    (state: StateConfig) => state.filters.selected.genres
   );
-  const moviesList = useAppSelector(
-    (state: StateConfig) => state.movies.movies
-  );
+  const moviesList = useAppSelector((state: StateConfig) => state.movies.data);
 
   const onSubmit = (event: { preventDefault: () => any }) => {
     event.preventDefault();

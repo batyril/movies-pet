@@ -8,11 +8,11 @@ import { getFilterMovies } from '../../utilities/filters';
 function MoviesList() {
   const filterMoviesList = useAppSelector((state: StateConfig) =>
     getFilterMovies(
-      state.movies.movies,
-      state.filters.selectedSorting,
-      state.filters.selectedYears,
-      state.filters.selectedGenres,
-      state.filters.selectedCollections,
+      state.movies.data,
+      state.filters.selected.sorting,
+      state.filters.selected.years,
+      state.filters.selected.genres,
+      state.filters.selected.collections,
       state.movies.watchLater,
       state.movies.favoriteMovies
     )

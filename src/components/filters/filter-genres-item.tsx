@@ -8,7 +8,7 @@ function FilterGenresItem() {
   const dispatch = useAppDispatch();
 
   const genresList: GenresConfig[] = useAppSelector(
-    (state: StateConfig) => state.filters.filters.genres
+    (state: StateConfig) => state.filters.data.genres
   );
 
   const onChangeGenres = (event: FormEvent) => {
@@ -18,7 +18,7 @@ function FilterGenresItem() {
   };
 
   const selectedGenres: number = useAppSelector(
-    (state: StateConfig) => state.filters.selectedGenres
+    (state: StateConfig) => state.filters.selected.genres
   );
   return (
     <div className='filter__genres filter-select'>

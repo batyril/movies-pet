@@ -1,16 +1,18 @@
 export interface StateConfig {
   filters: {
-    filters: FiltersConfig;
-    selectedPopularity: string;
-    selectedRating: string;
-    selectedSorting: string;
-    selectedYears: number;
-    selectedGenres: number;
+    data: FiltersConfig;
+    selected: {
+      popularity: string;
+      rating: string;
+      sorting: string;
+      years: number;
+      genres: number;
+      collections: string;
+    };
     authorization: boolean;
-    selectedCollections: string;
   };
   movies: {
-    movies: Movie[];
+    data: Movie[];
     favoriteMovies: Movie[];
     watchLater: Movie[];
   };

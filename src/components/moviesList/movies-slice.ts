@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { useMoviesServices } from '../../hooks/useMoviesServices';
 
 const initialState = {
-  movies: [],
+  data: [],
   moviesLoadingStatus: '',
   watchLaterLoadingStatus: '',
   favoriteMoviesLoadingStatus: '',
@@ -15,19 +15,15 @@ const moviesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    const {
-      fetchMovies,
-      fetchFavoriteMovies,
-      fetchWatchLater,
-      postFavoriteMovies,
-    } = useMoviesServices();
+    const { fetchMovies, fetchFavoriteMovies, fetchWatchLater } =
+      useMoviesServices();
     builder
       .addCase(fetchMovies.pending, (state) => {
         state.moviesLoadingStatus = 'loading';
       })
       .addCase(fetchMovies.fulfilled, (state, action) => {
         state.moviesLoadingStatus = 'idle';
-        state.movies = action.payload;
+        state.data = action.payload;
       })
       .addCase(fetchMovies.rejected, (state) => {
         state.moviesLoadingStatus = 'error';

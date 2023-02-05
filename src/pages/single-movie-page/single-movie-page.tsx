@@ -7,7 +7,7 @@ import './single-movie-page.sass';
 function SingleMoviePage() {
   const { movieId } = useParams();
   const moviesList = useAppSelector((state: StateConfig) =>
-    state.movies.movies.find((movies) => movies.id === Number(movieId))
+    state.movies.data.find((movies) => movies.id === Number(movieId))
   );
   return (
     <div

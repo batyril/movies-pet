@@ -4,17 +4,17 @@ import { DEFAULT_VALUE } from '../../const';
 import { useMoviesServices } from '../../hooks/useMoviesServices';
 
 const initialState = {
-  filters: { sorting: [], years: [], collections: [], genres: [] },
+  data: { sorting: [], years: [], collections: [], genres: [] },
   filterLoadingStatus: 'idle',
-  selectedPopularity: DEFAULT_VALUE.POPULARITY,
-  selectedRating: DEFAULT_VALUE.RATING,
-  selectedSorting: DEFAULT_VALUE.SORTING,
-  selectedCollections: DEFAULT_VALUE.COLLECTIONS,
-  selectedYears: DEFAULT_VALUE.YEARS,
-  selectedGenres: DEFAULT_VALUE.GENRES,
+  selected: {
+    popularity: DEFAULT_VALUE.POPULARITY,
+    rating: DEFAULT_VALUE.RATING,
+    sorting: DEFAULT_VALUE.SORTING,
+    collections: DEFAULT_VALUE.COLLECTIONS,
+    years: DEFAULT_VALUE.YEARS,
+    genres: DEFAULT_VALUE.GENRES,
+  },
   authorization: false,
-  selectedPage: DEFAULT_VALUE.SELECTED_PAGE,
-  countMoviesPage: DEFAULT_VALUE.COUNT_MOVIES_PAGE,
 };
 
 const filtersSlice = createSlice({
@@ -22,22 +22,22 @@ const filtersSlice = createSlice({
   initialState,
   reducers: {
     updateSelectedGenres: (state, action) => {
-      state.selectedGenres = action.payload;
+      state.selected.genres = action.payload;
     },
     updateSelectedCollections: (state, action) => {
-      state.selectedCollections = action.payload;
+      state.selected.collections = action.payload;
     },
     updateSelectedYears: (state, action) => {
-      state.selectedYears = action.payload;
+      state.selected.years = action.payload;
     },
     updateSelectedSorting: (state, action) => {
-      state.selectedSorting = action.payload;
+      state.selected.sorting = action.payload;
     },
     updateSelectedRating: (state, action) => {
-      state.selectedRating = action.payload;
+      state.selected.rating = action.payload;
     },
     updateSelectedPopularity: (state, action) => {
-      state.selectedPopularity = action.payload;
+      state.selected.popularity = action.payload;
     },
     updateAuthorization: (state, action) => {
       state.authorization = action.payload;
@@ -51,7 +51,7 @@ const filtersSlice = createSlice({
       })
       .addCase(fetchFilters.fulfilled, (state, action) => {
         state.filterLoadingStatus = 'idle';
-        state.filters = action.payload;
+        state.data = action.payload;
       })
       .addCase(fetchFilters.rejected, (state) => {
         state.filterLoadingStatus = 'error';

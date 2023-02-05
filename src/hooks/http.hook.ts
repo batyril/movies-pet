@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 const useHttp = () => {
+  /*  const [process, setProcess] = useState('waiting'); */
   const request = async (
     url: string,
     method = 'GET',
@@ -6,6 +9,7 @@ const useHttp = () => {
     headers = { 'Content-Type': 'application/json' }
   ) => {
     try {
+      /* setProcess('loading'); */
       const response = await fetch(url, { method, body, headers });
 
       if (!response.ok) {
@@ -16,11 +20,13 @@ const useHttp = () => {
 
       return data;
     } catch (e) {
-      throw e;
+      /* setProcess('error') */ throw e;
     }
   };
 
-  const clearError = () => {};
+  const clearError = () => {
+    /* setProcess('loading'); */
+  };
 
   return {
     request,
