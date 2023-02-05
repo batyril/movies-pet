@@ -1,35 +1,30 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
 import './movies-filter.sass';
-import { useMoviesServices } from '../../hooks/useMoviesServices';
 import { StateConfig } from '../../const/interfaces';
-import {
-  resetSelectedPage,
-  updateSelectGenres,
-  updateValueSorting,
-  updateValueYears,
-} from '../../redux/actions';
 import { Pagination } from '../pagination/pagination';
 import { DEFAULT_VALUE } from '../../const';
 import { FilterYearsItem } from '../filters/filter-years-item';
 import { FilterSortingItem } from '../filters/filter-sorting-item';
 import { FilterGenresItem } from '../filters/filter-genres-item';
 import { FilterCollectionsItem } from '../filters/filter-collections-item';
+import {
+  updateSelectedYears,
+  updateSelectedSorting,
+  updateSelectedGenres,
+} from './filters-slice';
+import { resetSelectedPage } from '../pagination/pagination-slice';
 
 function MoviesFilter() {
-  const dispatch = useDispatch();
-  const authorization: boolean = useSelector(
-    (state: StateConfig) => state.authorization
+  const dispatch = useAppDispatch();
+  const authorization: boolean = useAppSelector(
+    (state: StateConfig) => state.filters.authorization
   );
-  const { getAllFilters } = useMoviesServices();
-  useEffect(() => {
-    getAllFilters();
-  }, []);
 
   const resetFilter = () => {
-    dispatch(updateValueSorting(DEFAULT_VALUE.SORTING));
-    dispatch(updateValueYears(DEFAULT_VALUE.YEARS));
-    dispatch(updateSelectGenres(DEFAULT_VALUE.GENRES));
+    dispatch(updateSelectedSorting(DEFAULT_VALUE.SORTING));
+    dispatch(updateSelectedYears(DEFAULT_VALUE.YEARS));
+    dispatch(updateSelectedGenres(DEFAULT_VALUE.GENRES));
     dispatch(resetSelectedPage());
   };
 

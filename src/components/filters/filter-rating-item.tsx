@@ -1,17 +1,17 @@
 import React, { FormEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUpdateRating } from '../../redux/actions';
+import { useAppSelector, useAppDispatch } from '../../redux/store';
 import { StateConfig } from '../../const/interfaces';
+import { updateSelectedRating } from '../moviesFilter/filters-slice';
 
 function FilterRatingItem() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const selectedRating: string = useSelector(
-    (state: StateConfig) => state.selectedRating
+  const selectedRating: string = useAppSelector(
+    (state: StateConfig) => state.filters.selectedRating
   );
   const onChangeRating = (event: FormEvent) => {
     const element = event.target as HTMLInputElement;
-    dispatch(updateUpdateRating(element.value));
+    dispatch(updateSelectedRating(element.value));
   };
 
   return (

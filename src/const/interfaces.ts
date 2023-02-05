@@ -1,17 +1,23 @@
 export interface StateConfig {
-  selectedPopularity: string;
-  selectedRating: string;
-  filters: FiltersConfig;
-  selectedSorting: string;
-  selectedYears: number;
-  selectedGenres: number;
-  authorization: boolean;
-  movies: Movie[];
-  selectedCollections: string;
-  selectedPage: number;
-  countMoviesPage: number;
-  favoriteMovies: Movie[];
-  watchLater: Movie[];
+  filters: {
+    filters: FiltersConfig;
+    selectedPopularity: string;
+    selectedRating: string;
+    selectedSorting: string;
+    selectedYears: number;
+    selectedGenres: number;
+    authorization: boolean;
+    selectedCollections: string;
+  };
+  movies: {
+    movies: Movie[];
+    favoriteMovies: Movie[];
+    watchLater: Movie[];
+  };
+  pagination: {
+    selectedPage: number;
+    countMoviesPage: number;
+  };
 }
 
 export interface FiltersConfig {
@@ -29,12 +35,6 @@ export interface ButtonsConfig {
 export interface ModalContentConfig {
   onClose: () => void;
 }
-
-export type ValueSortingConfig =
-  | 'rating down'
-  | 'rating up'
-  | 'popular down'
-  | 'popular up';
 
 export interface SortingConfig {
   id: number;
@@ -54,10 +54,6 @@ export interface GenresConfig {
 }
 
 export type GenresMap = { id: number; name: string };
-
-export interface YearsConfig {
-  years: number[];
-}
 
 export interface Movie {
   adult: boolean;

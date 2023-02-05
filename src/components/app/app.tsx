@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './app.sass';
-import { useMoviesServices } from '../../hooks/useMoviesServices';
 import {
   HomePage,
   Page404,
@@ -9,12 +8,15 @@ import {
   Layout,
   MovieSearchPage,
 } from '../../pages';
+import { useAppDispatch } from '../../redux/store';
+import { useMoviesServices } from '../../hooks/useMoviesServices';
 
 function App() {
-  const { getMovies, getAllFilters } = useMoviesServices();
+  const { fetchMovies, fetchFilters } = useMoviesServices();
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    getMovies();
-    getAllFilters();
+    dispatch(fetchFilters());
+    dispatch(fetchMovies());
   }, []);
 
   return (

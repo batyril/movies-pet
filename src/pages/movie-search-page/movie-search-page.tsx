@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../redux/store';
 import { FilterGenresItem } from '../../components/filters/filter-genres-item';
 import './movie-search-page.sass';
 import { FilterRatingItem } from '../../components/filters/filter-rating-item';
@@ -14,16 +14,18 @@ type MoviesSelectedType = Movie | null;
 function MovieSearchPage() {
   const [moviesSelected, setMoviesSelected] =
     useState<MoviesSelectedType>(null);
-  const selectedPopularity: string = useSelector(
-    (state: StateConfig) => state.selectedPopularity
+  const selectedPopularity: string = useAppSelector(
+    (state: StateConfig) => state.filters.selectedPopularity
   );
-  const selectedRating: string = useSelector(
-    (state: StateConfig) => state.selectedRating
+  const selectedRating: string = useAppSelector(
+    (state: StateConfig) => state.filters.selectedRating
   );
-  const selectedGenres: number = useSelector(
-    (state: StateConfig) => state.selectedGenres
+  const selectedGenres: number = useAppSelector(
+    (state: StateConfig) => state.filters.selectedGenres
   );
-  const moviesList = useSelector((state: StateConfig) => state.movies);
+  const moviesList = useAppSelector(
+    (state: StateConfig) => state.movies.movies
+  );
 
   const onSubmit = (event: { preventDefault: () => any }) => {
     event.preventDefault();

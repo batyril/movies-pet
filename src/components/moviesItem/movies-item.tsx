@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../redux/store';
 import { GenresConfig, Movie, StateConfig } from '../../const/interfaces';
 import { ModalContent } from '../modal/modal';
 import './movies-item.sass';
@@ -15,8 +15,8 @@ function MoviesItem(props: { moviesData: Movie }) {
   } = props;
   const { moviesData } = props;
   const [showModal, setShowModal] = useState(false);
-  const genresList: GenresConfig[] = useSelector(
-    (state: StateConfig) => state.filters.genres
+  const genresList: GenresConfig[] = useAppSelector(
+    (state: StateConfig) => state.filters.filters.genres
   );
 
   const getGenreById = (idGenre: number, genres: GenresConfig[]) =>

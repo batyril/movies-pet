@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './modal.sass';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../redux/store';
 import closeImg from '../../image/close.png';
-import { updateAuthorization } from '../../redux/actions';
+import { updateAuthorization } from '../moviesFilter/filters-slice';
 import { ModalContentConfig } from '../../const/interfaces';
 
 function ModalContent({ onClose }: ModalContentConfig) {
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const onEmail = (event: {
     target: { value: React.SetStateAction<string> };
   }) => {

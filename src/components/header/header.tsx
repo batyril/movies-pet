@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import './header.sass';
 import { createPortal } from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../../redux/store';
 import { ModalContent } from '../modal/modal';
 import { StateConfig } from '../../const/interfaces';
-import { updateAuthorization } from '../../redux/actions';
+import { updateAuthorization } from '../moviesFilter/filters-slice';
 
 function Header() {
   const [showModal, setShowModal] = useState(false);
-  const authorization: boolean = useSelector(
-    (state: StateConfig) => state.authorization
+  const authorization: boolean = useAppSelector(
+    (state: StateConfig) => state.filters.authorization
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   return (
     <div className='movies__header'>
       <div className='container'>

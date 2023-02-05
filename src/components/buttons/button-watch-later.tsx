@@ -1,15 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { ButtonsConfig, StateConfig } from '../../const/interfaces';
 import { useMoviesServices } from '../../hooks/useMoviesServices';
 import bookmarks from '../../image/bookmarks.png';
 import addedBookmarks from '../../image/added-bookmarks.png';
+import { useAppSelector } from '../../redux/store';
 
 function ButtonWatchLater({ moviesData, setShowModal }: ButtonsConfig) {
-  const watchLater = useSelector((state: StateConfig) => state.watchLater);
+  const watchLater = useAppSelector(
+    (state: StateConfig) => state.movies.watchLater
+  );
   const { postWatchLater } = useMoviesServices();
-  const authorization: boolean = useSelector(
-    (state: StateConfig) => state.authorization
+  const authorization: boolean = useAppSelector(
+    (state: StateConfig) => state.filters.authorization
   );
 
   const currentImage = watchLater.some((item) => item.id === moviesData.id);

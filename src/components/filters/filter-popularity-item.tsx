@@ -1,17 +1,17 @@
 import React, { FormEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../redux/store';
 import { StateConfig } from '../../const/interfaces';
-import { updatePopularity } from '../../redux/actions';
+import { updateSelectedPopularity } from '../moviesFilter/filters-slice';
 
 function FilterPopularityItem() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const selectedPopularity: string = useSelector(
-    (state: StateConfig) => state.selectedPopularity
+  const selectedPopularity: string = useAppSelector(
+    (state: StateConfig) => state.filters.selectedPopularity
   );
   const onChangePopularity = (event: FormEvent) => {
     const element = event.target as HTMLInputElement;
-    dispatch(updatePopularity(element.value));
+    dispatch(updateSelectedPopularity(element.value));
   };
   return (
     <div className='filter-select '>

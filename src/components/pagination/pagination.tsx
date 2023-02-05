@@ -1,12 +1,14 @@
 import React from 'react';
 import './pagination.sass';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../redux/store';
 import { StateConfig } from '../../const/interfaces';
-import { updateSelectedPage } from '../../redux/actions';
+import { updateSelectedPage } from './pagination-slice';
 
 function Pagination() {
-  const dispatch = useDispatch();
-  const selectedPage = useSelector((state: StateConfig) => state.selectedPage);
+  const dispatch = useAppDispatch();
+  const selectedPage = useAppSelector(
+    (state: StateConfig) => state.pagination.selectedPage
+  );
 
   const nextPage = () => {
     dispatch(updateSelectedPage(true));

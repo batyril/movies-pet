@@ -1,28 +1,28 @@
 import React, { FormEvent, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { CollectionsConfig, StateConfig } from '../../const/interfaces';
-import { updateSelectCollections } from '../../redux/actions';
+import { updateSelectedCollections } from '../moviesFilter/filters-slice';
+import { useAppSelector, useAppDispatch } from '../../redux/store';
 import { useMoviesServices } from '../../hooks/useMoviesServices';
 
 function FilterCollectionsItem() {
-  const { getWatchLater, getFavoriteMovies } = useMoviesServices();
-  const dispatch = useDispatch();
-  const collectionsList: CollectionsConfig[] = useSelector(
-    (state: StateConfig) => state.filters.collections
+  const { fetchWatchLater, fetchFavoriteMovies } = useMoviesServices();
+  const dispatch = useAppDispatch();
+  const collectionsList: CollectionsConfig[] = useAppSelector(
+    (state: StateConfig) => state.filters.filters.collections
   );
-  const selectedCollections = useSelector(
-    (state: StateConfig) => state.selectedCollections
+  const selectedCollections = useAppSelector(
+    (state: StateConfig) => state.filters.selectedCollections
   );
 
   useEffect(() => {
-    getWatchLater();
-    getFavoriteMovies();
+    dispatch(fetchWatchLater());
+    dispatch(fetchFavoriteMovies());
   }, [selectedCollections]);
 
   const onChangeCollections = (event: FormEvent) => {
     const element = event.target as HTMLInputElement;
     const collection = element.value;
-    dispatch(updateSelectCollections(collection));
+    dispatch(updateSelectedCollections(collection));
   };
   return (
     <div className='filter__collections filter-select'>

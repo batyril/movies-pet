@@ -1,13 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../redux/store';
 import { StateConfig } from '../../const/interfaces';
 import './single-movie-page.sass';
 
 function SingleMoviePage() {
   const { movieId } = useParams();
-  const moviesList = useSelector((state: StateConfig) =>
-    state.movies.find((movies) => movies.id === Number(movieId))
+  const moviesList = useAppSelector((state: StateConfig) =>
+    state.movies.movies.find((movies) => movies.id === Number(movieId))
   );
   return (
     <div

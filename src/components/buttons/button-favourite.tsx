@@ -1,18 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import favourite from '../../image/favourite.png';
 import addedFavourite from '../../image/added-favourite.png';
 import { ButtonsConfig, StateConfig } from '../../const/interfaces';
 import { useMoviesServices } from '../../hooks/useMoviesServices';
+import { useAppSelector } from '../../redux/store';
 
-// todo: сделать удаление фильмов
 function ButtonFavourite({ moviesData, setShowModal }: ButtonsConfig) {
-  const favoriteMovies = useSelector(
-    (state: StateConfig) => state.favoriteMovies
+  const favoriteMovies = useAppSelector(
+    (state: StateConfig) => state.movies.favoriteMovies
   );
   const { postFavoriteMovies } = useMoviesServices();
-  const authorization: boolean = useSelector(
-    (state: StateConfig) => state.authorization
+  const authorization: boolean = useAppSelector(
+    (state: StateConfig) => state.filters.authorization
   );
 
   const currentImage = favoriteMovies.some((item) => item.id === moviesData.id);
